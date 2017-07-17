@@ -9,7 +9,7 @@ import (
 
 func main() {
 	// "http://www.vipkid.com.cn/path/1.jpg?a=1&c=123#untar"
-	// ftp://zhengyansheng:123456@www.vipkid.com.cn/
+	// ftp://zhengyansheng:123456@www.baidu.com.cn/
 	s := os.Args[1]
 	u, err := url.Parse(s)
 	if err != nil {
