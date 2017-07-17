@@ -12,6 +12,7 @@ func sum(s []string, c chan string) {
 
 func main() {
 	s := []string{"hello", "golang", "c++", "python"}
+	// 没有缓冲区的channel
 	c1 := make(chan string)
 	c2 := make(chan string)
 	go sum(s[:len(s)/2], c1)
