@@ -1,10 +1,10 @@
 package main
 
 import (
-	"io"
+	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"log"
 	"net/http"
-	"os"
 )
 
 func main() {
@@ -17,5 +17,17 @@ func main() {
 	if resp.StatusCode != http.StatusOK {
 		log.Fatal(resp.Status)
 	}
-	io.Copy(os.Stdout, resp.Body)
+	//io.Copy(os.Stdout, resp.Body)
+	doc, err := goquery.NewDocumentFromResponse(resp)
+	if err != nil {
+		log.Fatal(err)
+	}
+	doc.Find("img").Each(func(i int, s *goquery.Selection) {
+		link, ok := s.Attr("src")
+		if ok {
+			fmt.Println(link)
+		} else {
+			fmt.Println("src not found.")
+		}
+	})
 }
